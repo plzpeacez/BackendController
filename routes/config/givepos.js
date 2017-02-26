@@ -1,6 +1,6 @@
 exports.givepos = function (lat, lon, callback) {
     if (lat != null) {
-        callback({ 'response': lat+" "+lon });
+        callback({ 'lat': lat, 'lon':lon });
     }
     else{
         callback({'response':"not ok"});
