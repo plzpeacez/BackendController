@@ -23,4 +23,15 @@ router.get('/givepos',function(req,res){
     res.json(temp);
 });
 
+router.post('/login', function (req, res) {
+    var post = req.body;
+    if (post.username == 'peace' && post.password == '1234') {
+        // req.session.user_id = johns_user_id_here;
+        // res.redirect('/my_secret_page');
+        res.send(body);
+    } else {
+        res.send('Bad user/pass');
+    }
+});
+
 module.exports = router;
