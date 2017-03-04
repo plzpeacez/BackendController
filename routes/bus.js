@@ -28,7 +28,7 @@ router.post('/login', function (req, res) {
     if (post.username == 'peace' && post.password == '1234') {
         // req.session.user_id = johns_user_id_here;
         // res.redirect('/my_secret_page');
-        res.send(body);
+        res.send('body');
     } else {
         res.send('Bad user/pass');
     }
