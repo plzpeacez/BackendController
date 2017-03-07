@@ -1,6 +1,7 @@
 var express = require('express');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var givepos = require('./config/givepos');
+var database = require('./config/database');
 var router = express.Router();
 
 var temp;
@@ -23,6 +24,10 @@ router.post('/givepos', function (req, res) {
 
 router.get('/givepos', function (req, res) {
     res.json(temp);
+});
+
+router.get('/base', function (req, res) {
+    database.login('1234','1234','1234')
 });
 
 router.post('/login', function (req, res) {
