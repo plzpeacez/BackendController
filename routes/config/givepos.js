@@ -6,7 +6,15 @@ var connection = mysql.createConnection({
     database: 'test' //database name
 });
 
+var id = "1" ;
+
 exports.givepos = function (lat, lon, callback) {
+
+    var position = {
+        position_latitude : lat,
+        position_longitude : lon
+    };
+
     if (lat != null) {
         connection.connect(function (err) {
             if (err) {
@@ -16,10 +24,10 @@ exports.givepos = function (lat, lon, callback) {
 
             console.log('connected as id ' + connection.threadId);
         });
-        connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
+        connection.query('UPDATE position set ? WHERE Position_id = ? ',[position, id], function (err, rows, fields) {
             if (err) throw err
 
-            console.log('The solution is: ', rows[0].solution)
+            console.log('Complete')
         });
 
         connection.end();
