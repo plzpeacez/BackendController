@@ -3,9 +3,25 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var givepos = require('./config/givepos');
 var database = require('./config/database');
 var router = express.Router();
+var mysql = require('mysql')
+var connection = mysql.createConnection({
+    host: 'localhost', //edit hostname here
+    user: 'root', //username
+    password: '1234', //password
+    database: 'allbus' //database name
+});
 
 var temp;
 var token;
+
+connection.connect(function (err) {
+    if (err) {
+        console.error('error connecting: ' + err.stack);
+        return;
+    }
+
+    console.log('connected as id ' + connection.threadId);
+});
 
 router.get('/', function (req, res, next) {
     res.end('Node-Bus-Service');
@@ -27,7 +43,7 @@ router.get('/givepos', function (req, res) {
 });
 
 router.get('/base', function (req, res) {
-    database.login('1234','1234','1234')
+    database.login('1234', '1234', '1234')
 });
 
 router.post('/login', function (req, res) {
@@ -43,9 +59,9 @@ router.post('/login', function (req, res) {
             expiresIn: '24h'
         });
         res.json({
-          success: true,
-          message: 'Enjoy your token!',
-          token: token
+            success: true,
+            message: 'Enjoy your token!',
+            token: token
         });
     } else {
         res.send('Bad user/pass');
