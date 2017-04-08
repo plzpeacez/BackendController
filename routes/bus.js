@@ -14,14 +14,16 @@ var connection = mysql.createConnection({
 var temp;
 var token;
 
-connection.connect(function (err) {
-    if (err) {
-        console.error('error connecting: ' + err.stack);
-        return;
-    }
 
-    console.log('connected as id ' + connection.threadId);
-});
+// DATABASE CONNECTION UNCOMMENT IT
+// connection.connect(function (err) {
+//     if (err) {
+//         console.error('error connecting: ' + err.stack);
+//         return;
+//     }
+
+//     console.log('connected as id ' + connection.threadId);
+// });
 
 router.get('/', function (req, res, next) {
     res.end('Node-Bus-Service');

@@ -17,19 +17,12 @@ exports.givepos = function (lat, lon, callback) {
     };
 
     if (lat != null) {
-        // connection.connect(function (err) {
-        //     if (err) {
-        //         console.error('error connecting: ' + err.stack);
-        //         return;
-        //     }
+        // UPDATE VALUES IN DATABASE UNCOMMENT IT
+        // connection.query('UPDATE position set ? WHERE Position_id = ? ', [position, id], function (err, rows, fields) {
+        //     if (err) throw err
 
-        //     console.log('connected as id ' + connection.threadId);
+        //     console.log('Complete')
         // });
-        connection.query('UPDATE position set ? WHERE Position_id = ? ', [position, id], function (err, rows, fields) {
-            if (err) throw err
-
-            console.log('Complete')
-        });
 
         // connection.end();
         callback({ 'lat': lat, 'lon': lon });
