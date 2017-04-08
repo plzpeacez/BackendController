@@ -1,11 +1,11 @@
 FROM node:latest
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+# WORKDIR /usr/src/
+RUN git clone https://github.com/plzpeacez/BackendController.git
+RUN cd BackendController
 
-# Install app dependencies
-COPY package.json /usr/src/app/
+WORKDIR /BackendController
+
 RUN npm install
 
 # Bundle app source
