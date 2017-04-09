@@ -6,6 +6,7 @@ var morgan = require('morgan');
 var index = require('./routes/index');
 var todos = require('./routes/todos');
 var bus = require('./routes/bus');
+var geoback = require('./routes/geoback');
 
 //View Engine
 var app = express();
@@ -22,6 +23,7 @@ app.use(morgan('dev'));
 app.use('/', index);
 app.use('/api/v1/', todos);
 app.use('/api/v2/', bus);
+app.use('/api/v3/', geoback);
 
 app.listen(port, function () {
   console.log('Server started on port ' + port);
