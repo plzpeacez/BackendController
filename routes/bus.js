@@ -29,11 +29,36 @@ router.get('/', function (req, res, next) {
     res.end('Node-Bus-Service');
 });
 
-router.post('/givepos', function (req, res) {
+router.post('/givepos1', function (req, res) {
     var lat = req.body.lat;
     var lon = req.body.lon;
+    var no = req.body.no;
 
-    givepos.givepos(lat, lon, function (found) {
+    givepos.givepos(lat, lon, no, function (found) {
+        console.log(found);
+        res.json(found);
+        temp = found;
+    });
+});
+
+router.post('/givepos2', function (req, res) {
+    var lat = req.body.lat;
+    var lon = req.body.lon;
+    var no = req.body.no;
+
+    givepos.givepos(lat, lon, no, function (found) {
+        console.log(found);
+        res.json(found);
+        temp = found;
+    });
+});
+
+router.post('/givepos3', function (req, res) {
+    var lat = req.body.lat;
+    var lon = req.body.lon;
+    var no = req.body.no;
+
+    givepos.givepos(lat, lon, no, function (found) {
         console.log(found);
         res.json(found);
         temp = found;

@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
 var id = "1";
 var position = null;
 
-exports.givepos = function (lat, lon, callback) {
+exports.givepos = function (lat, lon, no, callback) {
 
     position = {
         position_latitude: lat,
@@ -25,7 +25,11 @@ exports.givepos = function (lat, lon, callback) {
         // });
 
         // connection.end();
-        callback({ 'lat': lat, 'lon': lon });
+        callback([
+            {'no' : no, 'lat': lat, 'lon': lon },
+            {'no' : no, 'lat': lat, 'lon': lon },
+            {'no' : no, 'lat': lat, 'lon': lon }]
+            );
     }
     else {
         callback({ 'response': "not ok" });
