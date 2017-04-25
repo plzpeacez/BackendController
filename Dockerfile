@@ -13,3 +13,9 @@ RUN npm install
 
 EXPOSE 3001
 CMD [ "node", "server" ]
+
+#$ docker build -t <your username>/node-web-app .
+#$ docker build -t plzpeacez/node-service .
+
+#$ docker run -p 49160:8080 -d <your username>/node-web-app
+#$ docker run -dit -p 80:3001 plzpeacez/node-service
