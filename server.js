@@ -23,7 +23,7 @@ app.use(morgan('dev'));
 app.use('/', index);
 app.use('/api/v1/', todos);
 app.use('/api/v2/', bus);
-app.use('/api/v3/', geoback);
+// app.use('/api/v3/', geoback);
 
 app.listen(port, function () {
   console.log('Server started on port ' + port);
