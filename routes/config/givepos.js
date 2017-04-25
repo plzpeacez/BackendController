@@ -37,7 +37,7 @@ exports.givepos = function (lat, lon, no, callback) {
     position = null;
 }
 
-exports.givepos3 = function (lat, lon, no, callback) {
+exports.givepos3 = function (lat, lon, callback) {
     if (lat != null) {
         callback({'lat': lat, 'lon': lon});
     }else {
