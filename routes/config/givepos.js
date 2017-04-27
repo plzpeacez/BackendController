@@ -8,6 +8,8 @@ var connection = mysql.createConnection({
 
 var id = "1";
 var position = null;
+var obj = [];
+var isNo = false;
 
 exports.givepos = function (lat, lon, no, callback) {
 
@@ -25,11 +27,14 @@ exports.givepos = function (lat, lon, no, callback) {
         // });
 
         // connection.end();
-        callback([
-            {'no' : no, 'lat': lat, 'lon': lon },
-            {'no' : no, 'lat': lat, 'lon': lon },
-            {'no' : no, 'lat': lat, 'lon': lon }]
-            );
+
+        changeLatLon(no, lat, lon);
+        isNo = false;
+        if (!obj.hasOwnProperty(0)) {
+            obj.push({'no': no, 'lat': lat, 'lon': lon });
+        }
+        
+        callback(obj);
     }
     else {
         callback({ 'response': "not ok" });
@@ -39,9 +44,9 @@ exports.givepos = function (lat, lon, no, callback) {
 
 exports.givepos3 = function (lat, lon, callback) {
     if (lat != null) {
-        callback({'lat': lat, 'lon': lon});
-    }else {
-        callback({'response': "not ok"});
+        callback({ 'lat': lat, 'lon': lon });
+    } else {
+        callback({ 'response': "not ok" });
     }
 }
 
@@ -60,4 +65,19 @@ exports.dbconnect = function (lat, lon, callback) {
         });
 
     });
+}
+
+function changeLatLon(no, lat, lon) {
+    for (var i in obj) {
+        if (no == obj[i].no) {
+            obj[i].lat = lat;
+            obj[i].lon = lon;
+            isNo = true;
+            break;
+        }
+    }
+    if (!isNo) {
+        obj.push({'no': no, 'lat': lat, 'lon': lon });
+        isNo = false;
+    }
 }
