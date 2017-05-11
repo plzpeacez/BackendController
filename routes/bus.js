@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
     database: 'allbus' //database name
 });
 
-var temp;
+var temp1,temp2,temp3;
 var token;
 
 
@@ -34,10 +34,10 @@ router.post('/givepos1', function (req, res) {
     var lon = req.body.lon;
     var no = req.body.no;
 
-    givepos.givepos(lat, lon, no, function (found) {
+    givepos.givepos1(lat, lon, no, function (found) {
         console.log(found);
         res.json(found);
-        temp = found;
+        temp1 = found;
     });
 });
 
@@ -46,27 +46,35 @@ router.post('/givepos2', function (req, res) {
     var lon = req.body.lon;
     var no = req.body.no;
 
-    givepos.givepos(lat, lon, no, function (found) {
+    givepos.givepos2(lat, lon, no, function (found) {
         console.log(found);
         res.json(found);
-        temp = found;
+        temp2 = found;
     });
 });
 
 router.post('/givepos3', function (req, res) {
     var lat = req.body.lat;
     var lon = req.body.lon;
-    // var no = req.body.no;
+    var no = req.body.no;
 
-    givepos.givepos3(lat, lon, function (found) {
+    givepos.givepos3(lat, lon, no, function (found) {
         console.log(found);
         res.json(found);
-        temp = found;
+        temp3 = found;
     });
 });
 
-router.get('/givepos', function (req, res) {
-    res.json(temp);
+router.get('/givepos1', function (req, res) {
+    res.json(temp1);
+});
+
+router.get('/givepos2', function (req, res) {
+    res.json(temp2);
+});
+
+router.get('/givepos3', function (req, res) {
+    res.json(temp3);
 });
 
 router.get('/base', function (req, res) {
