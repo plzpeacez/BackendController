@@ -11,6 +11,7 @@ var position = null;
 var obj1 = [];
 var obj2 = [];
 var obj3 = [];
+var air = [];
 var isNo = false;
 
 exports.givepos1 = function (lat, lon, no, callback) {
@@ -174,4 +175,50 @@ function changeLatLon3(no, lat, lon) {
         obj3.push({'no': no, 'lat': lat, 'lon': lon });
         isNo = false;
     }
+}
+
+function changeLatLon3air(no, lat, lon) {
+    for (var i in air) {
+        if (no == air[i].no) {
+            air[i].lat = lat;
+            air[i].lon = lon;
+            isNo = true;
+            break;
+        }
+    }
+    if (!isNo) {
+        air.push({'no': no, 'lat': lat, 'lon': lon });
+        isNo = false;
+    }
+}
+
+exports.givepos3air = function (lat, lon, no, callback) {
+
+    position = {
+        position_latitude: lat,
+        position_longitude: lon
+    };
+
+    if (lat != null) {
+        // UPDATE VALUES IN DATABASE UNCOMMENT IT
+        // connection.query('UPDATE position set ? WHERE Position_id = ? ', [position, id], function (err, rows, fields) {
+        //     if (err) throw err
+
+        //     console.log('Complete')
+        // });
+
+        // connection.end();
+
+        changeLatLon3air(no, lat, lon);
+        isNo = false;
+        if (!air.hasOwnProperty(0)) {
+            air.push({'no': no, 'lat': lat, 'lon': lon });
+        }
+        
+        callback(air);
+    }
+    else {
+        callback({ 'response': "not ok" });
+    }
+    position = null;
 }
