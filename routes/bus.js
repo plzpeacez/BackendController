@@ -70,7 +70,7 @@ router.post('/givepos3air', function (req, res) {
     var lon = req.body.lon;
     var no = req.body.no;
 
-    givepos.givepos3(lat, lon, no, function (found) {
+    givepos.givepos3air(lat, lon, no, function (found) {
         console.log(found);
         res.json(found);
         temp4 = found;
