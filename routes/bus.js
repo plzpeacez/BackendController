@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
     database: 'allbus' //database name
 });
 
-var temp1,temp2,temp3;
+var temp1,temp2,temp3,temp4;
 var token;
 
 
@@ -73,7 +73,7 @@ router.post('/givepos3air', function (req, res) {
     givepos.givepos3(lat, lon, no, function (found) {
         console.log(found);
         res.json(found);
-        temp3 = found;
+        temp4 = found;
     });
 });
 
@@ -87,6 +87,10 @@ router.get('/givepos2', function (req, res) {
 
 router.get('/givepos3', function (req, res) {
     res.json(temp3);
+});
+
+router.get('/givepos3air', function (req, res) {
+    res.json(temp4);
 });
 
 router.get('/base', function (req, res) {
